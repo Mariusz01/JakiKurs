@@ -55,6 +55,8 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.pokażNormalnieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zamknijToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label5 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,11 +132,11 @@
             // 
             // buttonOdswiez
             // 
-            this.buttonOdswiez.Location = new System.Drawing.Point(97, 297);
+            this.buttonOdswiez.Location = new System.Drawing.Point(176, 291);
             this.buttonOdswiez.Name = "buttonOdswiez";
             this.buttonOdswiez.Size = new System.Drawing.Size(75, 23);
             this.buttonOdswiez.TabIndex = 7;
-            this.buttonOdswiez.Text = "Odśwież";
+            this.buttonOdswiez.Text = "Włącz";
             this.buttonOdswiez.UseVisualStyleBackColor = true;
             this.buttonOdswiez.Click += new System.EventHandler(this.buttonOdswiez_Click);
             // 
@@ -268,11 +270,27 @@
             this.zamknijToolStripMenuItem.Text = "Zamknij";
             this.zamknijToolStripMenuItem.Click += new System.EventHandler(this.zamknijToolStripMenuItem_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(24, 294);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(146, 15);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "odświeżanie co 10 minut:";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 600000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(269, 341);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.labelFrank);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelData);
@@ -324,6 +342,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem odświeżToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

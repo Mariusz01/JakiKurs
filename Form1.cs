@@ -23,7 +23,14 @@ namespace JakiKurs
 
             using (WebClient plikNet = new WebClient())
             {
-                plikNet.DownloadFile("http://www.nbp.pl/Kursy/xml/dir.txt", "dir.txt");
+                try
+                {
+                    plikNet.DownloadFile("http://www.nbp.pl/Kursy/xml/dir.txt", "dir.txt");
+                }
+                catch (WebException )
+                {
+                    MessageBox.Show("bład połączenia","Komunikat:", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
             }
 
             StreamReader wczytany = new StreamReader("dir.txt");
@@ -98,11 +105,37 @@ namespace JakiKurs
         }
 
 
-
-        private void buttonOdswiez_Click(object sender, EventArgs e)
+        private void Timer1_Tick(object Sender, EventArgs e)
         {
             OdswiezDane();
         }
+
+
+        private void buttonOdswiez_Click(object sender, EventArgs e)
+        {
+            if (buttonOdswiez.Text == "Wyłącz")
+            {
+                buttonOdswiez.Text = "Włącz";
+                timer1.Enabled = false;
+            }
+            else
+            {
+                buttonOdswiez.Text = "Wyłącz";
+                timer1.Enabled = true;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         private void zamknijToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
