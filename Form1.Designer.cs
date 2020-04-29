@@ -57,6 +57,7 @@
             this.zamknijToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label5 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,7 +133,7 @@
             // 
             // buttonOdswiez
             // 
-            this.buttonOdswiez.Location = new System.Drawing.Point(176, 291);
+            this.buttonOdswiez.Location = new System.Drawing.Point(164, 275);
             this.buttonOdswiez.Name = "buttonOdswiez";
             this.buttonOdswiez.Size = new System.Drawing.Size(75, 23);
             this.buttonOdswiez.TabIndex = 7;
@@ -274,7 +275,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(24, 294);
+            this.label5.Location = new System.Drawing.Point(12, 278);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(146, 15);
             this.label5.TabIndex = 12;
@@ -285,11 +286,22 @@
             this.timer1.Interval = 600000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(83, 306);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Odśwież";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(269, 341);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.labelFrank);
             this.Controls.Add(this.label3);
@@ -344,6 +356,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
