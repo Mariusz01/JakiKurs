@@ -125,17 +125,6 @@ namespace JakiKurs
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
         private void zamknijToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -144,8 +133,6 @@ namespace JakiKurs
         {
             OdswiezDane();
         }
-
-
 
         private void Form1_Resize(object sender, EventArgs e)
         {
@@ -158,7 +145,6 @@ namespace JakiKurs
                 this.ShowInTaskbar = false;
             }
         }
-
 
         private void pokażNormalnieToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -178,7 +164,5 @@ namespace JakiKurs
             this.Visible = true;
         }
 
- 
- 
     }
 }
