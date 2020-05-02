@@ -16,9 +16,24 @@ namespace JakiKurs
 {
     public partial class Form1 : Form
     {
-        private readonly string path = AppDomain.CurrentDomain.BaseDirectory + "log.txt";//podaje sciezke do programu                                                                                         //        private readonly string path2 = path + "log.txt";
+        private string path;//sciezke do pliku logu                                                                                       //        private readonly string path2 = path + "log.txt";
+        private readonly string path2 = AppDomain.CurrentDomain.BaseDirectory + "path.txt";//podaje sciezke do pliku path.txt
 
-        #region funkcjaPobirajacaDane
+        #region funkcje
+
+        private void SprawdzPlik()
+        {
+            if (File.Exists(path2))
+            {
+                path = File.ReadAllText(path2);
+            }
+            else
+            {
+                File.AppendAllText(path2, AppDomain.CurrentDomain.BaseDirectory + "log.txt");
+                path = AppDomain.CurrentDomain.BaseDirectory + "log.txt";
+            }
+        }
+
         private void OdswiezDane()
         {
             List<string> plik = new List<string>();//do wczytania danych
@@ -98,12 +113,13 @@ namespace JakiKurs
             }
         }
 
-        #endregion funkcjaPobirajacaDane
+        #endregion funkcje
 
         public Form1()
         {
             InitializeComponent();
             OdswiezDane();
+            SprawdzPlik();
             File.AppendAllText(path, DateTime.Now.ToString() + " Włączono program" + Environment.NewLine);
         }
 
@@ -188,5 +204,30 @@ namespace JakiKurs
             File.AppendAllText(path, DateTime.Now.ToString() + " Wyłączono program" + Environment.NewLine);
         }
 
+        #region menuPlik
+        private void zmieńŚcieżkęZapisuLoguToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Text Documents|*.txt", ValidateNames = true })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (StreamWriter sw = new StreamWriter(sfd.FileName))
+                        {
+                            sw.WriteLineAsync("test");
+                            File.Delete(path2);
+                            File.AppendAllText(path2, sfd.FileName);
+                            path = sfd.FileName;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        #endregion menuPlik
     }
 }
