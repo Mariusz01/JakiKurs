@@ -16,6 +16,8 @@ namespace JakiKurs
 {
     public partial class Form1 : Form
     {
+        private readonly string path = AppDomain.CurrentDomain.BaseDirectory + "log.txt";//podaje sciezke do programu                                                                                         //        private readonly string path2 = path + "log.txt";
+
         #region funkcjaPobirajacaDane
         private void OdswiezDane()
         {
@@ -102,6 +104,7 @@ namespace JakiKurs
         {
             InitializeComponent();
             OdswiezDane();
+            File.AppendAllText(path, DateTime.Now.ToString() + " Włączono program" + Environment.NewLine);
         }
 
 
@@ -110,27 +113,40 @@ namespace JakiKurs
             OdswiezDane();
         }
 
+        #region obslugaPrzyciskow
 
         private void buttonOdswiez_Click(object sender, EventArgs e)
         {
             if (buttonOdswiez.Text == "Wyłącz")
             {
+                File.AppendAllText(path, DateTime.Now.ToString() + " Wyłączono odświeżanie automatyczne" + Environment.NewLine);
                 buttonOdswiez.Text = "Włącz";
                 timer1.Enabled = false;
             }
             else
             {
+                File.AppendAllText(path, DateTime.Now.ToString() + " Włączono odświeżanie automatyczne" + Environment.NewLine);
                 buttonOdswiez.Text = "Wyłącz";
                 timer1.Enabled = true;
             }
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            File.AppendAllText(path, DateTime.Now.ToString() + " Odświeżono dane przyciskiem" + Environment.NewLine);
+            OdswiezDane();
+        }
+        #endregion obslugaPrzyciskow
+
+        #region obslugaTray
 
         private void zamknijToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            File.AppendAllText(path, DateTime.Now.ToString() + " Zamknięto program w Tray" + Environment.NewLine);
             Application.Exit();
         }
         private void odświeżToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            File.AppendAllText(path, DateTime.Now.ToString() + " Odświeżono dane w Tray" + Environment.NewLine);
             OdswiezDane();
         }
 
@@ -138,6 +154,7 @@ namespace JakiKurs
         {
             if (FormWindowState.Minimized == WindowState)
             {
+                File.AppendAllText(path, DateTime.Now.ToString() + " Zminimalizowano do Trey" + Environment.NewLine);
                 notifyIconTray.Visible = true;
                 notifyIconTray.Text = euroToolStripMenuItem.Text + "||" + dolarToolStripMenuItem.Text + "||" + funtToolStripMenuItem.Text + "||" + frankToolStripMenuItem.Text;
                 notifyIconTray.Icon = this.Icon;
@@ -153,20 +170,23 @@ namespace JakiKurs
             notifyIconTray.Visible = false;
             this.ShowInTaskbar = true;
             this.Visible = true;
+            File.AppendAllText(path, DateTime.Now.ToString() + " Przywrócono do okna" + Environment.NewLine);
         }
 
         private void notifyIconTray_DoubleClick(object sender, EventArgs e)
         {
+            File.AppendAllText(path, DateTime.Now.ToString() + " Przywrócono do okna" + Environment.NewLine);
             this.WindowState = FormWindowState.Normal;
-
             notifyIconTray.Visible = false;
             this.ShowInTaskbar = true;
             this.Visible = true;
         }
+        #endregion obslugaTray
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)//przy zamknieciu programu
         {
-            OdswiezDane();
+            File.AppendAllText(path, DateTime.Now.ToString() + " Wyłączono program" + Environment.NewLine);
         }
+
     }
 }
